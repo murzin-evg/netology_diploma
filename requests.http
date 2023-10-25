@@ -1,0 +1,267 @@
+# примеры API-запросов
+
+@baseUrl = http://127.0.0.1:8000
+
+
+
+# register account
+###
+POST {{baseUrl}}/api/v1/user/register
+Content-Type: application/json
+
+{
+    "email": "murzin.e.s@mail.ru",
+    "password": "QQQQ843853QQQQ",
+    "first_name": "Evgeniy",
+    "last_name": "Murzin",
+    "company": "ЛавкаЗаправка№1",
+    "position": "Подлокотник",
+    "type": "shop"
+}
+
+# confirm account
+###
+POST {{baseUrl}}/api/v1/user/register/confirm
+Content-Type: application/json
+
+{
+    "token": "d8feedca84acccc7f34934b39c671021d13204d2edf1aa91",
+    "email": "murzin.e.s@mail.ru"
+}
+
+# user login
+###
+POST {{baseUrl}}/api/v1/user/login
+Content-Type: application/json
+
+{
+    "email": "murzin.e.s@mail.ru",
+    "password": "QQQQ843853QQQQ"
+}
+
+# got token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+# test token
+###
+# POST {{baseUrl}}/api/v1/user/auth
+GET {{baseUrl}}/api/v1/user/auth
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "email": "murzin.e.s@mail.ru",
+    "password": "QQQQ843853QQQQ"
+}
+
+# get account details
+###
+GET {{baseUrl}}/api/v1/user/details
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "email": ""
+}
+
+# change account details (post method)
+###
+POST {{baseUrl}}/api/v1/user/details
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "email": "murzin.e.s@mail.com",
+    "password": "123444!4",
+    "first_name": "Sasha",
+    "last_name": "Ovechkin",
+    "company": "Washington Capitals",
+    "position": "sniper"
+}
+
+# get contacts
+###
+GET {{baseUrl}}/api/v1/user/contact
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+}
+
+# add new contact
+###
+POST {{baseUrl}}/api/v1/user/contact
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "city": "Kazan",
+    "street": "Lenina",
+    "phone": "+79998887766"
+}
+
+# remove contact
+###
+DELETE {{baseUrl}}/api/v1/user/contact
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "items": "9,10,8"
+}
+
+# password reset test
+###
+POST {{baseUrl}}/api/v1/user/password_reset
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "email": "murzin.e.s@mail.ru"
+}
+
+# password reset confirm
+###
+POST {{baseUrl}}/api/v1/user/password_reset/confirm
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "token": "5992d373b69df5287ead6dea2c1fbaa1e1087a3",
+    "password": "QQQQ88888QQQQ"
+}
+
+# partner update via link
+###
+POST {{baseUrl}}/api/v1/partner/update
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "url": "https://raw.githubusercontent.com/murzin-evg/netology_diploma/master/data/shop1.yaml"
+}
+
+# partner get status
+###
+GET {{baseUrl}}/api/v1/partner/status
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+}
+
+# partner update status
+###
+POST {{baseUrl}}/api/v1/partner/status
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "status": "True"
+}
+
+# partner orders
+###
+GET {{baseUrl}}/api/v1/partner/orders
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+}
+
+# view category
+###
+GET {{baseUrl}}/api/v1/categories/
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+}
+
+# view shops
+###
+GET {{baseUrl}}/api/v1/shops/
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+}
+
+# view products
+###
+GET {{baseUrl}}/api/v1/products/?shop_id=1
+Content-Type: application/json
+
+{
+}
+
+
+# basket retrieve
+###
+GET {{baseUrl}}/api/v1/basket
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+}
+
+
+# basket add to basket
+###
+POST {{baseUrl}}/api/v1/basket
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "items": [
+        {
+            "product_info": 2,
+            "quantity": 6
+        }
+    ]
+}
+
+# basket update in basket
+###
+PUT {{baseUrl}}/api/v1/basket
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "items": [
+        {
+            "id": 1,
+            "quantity": 1
+        }
+    ]
+}
+
+# basket delete from basket
+###
+DELETE {{baseUrl}}/api/v1/basket
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "items": "14,13"
+}
+
+# orders get
+###
+GET {{baseUrl}}/api/v1/order
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "items": "14,13"
+}
+
+# order PUT FROM BASKET TO ORDER
+###
+POST {{baseUrl}}/api/v1/order
+Content-Type: application/json
+Authorization: Token 3bbb6d76abda8d0e50c83c5fbec4d836791936eb
+
+{
+    "id": "6",
+    "contact": "2"
+}
